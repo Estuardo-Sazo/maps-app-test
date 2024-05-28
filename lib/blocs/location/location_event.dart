@@ -6,3 +6,9 @@ sealed class LocationEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class OnNewLocationEvent extends LocationEvent {
+  final LatLng newLocation;
+
+  const OnNewLocationEvent(this.newLocation);
+}
