@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maps_app1/blocs/blocs.dart';
 
 class MapScreen extends StatefulWidget {
@@ -29,15 +30,19 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: BlocBuilder<LocationBloc, LocationState>(
-      builder: (context, state) {
-        if (state.lastKnowLocation == null) {
-          return const Center(child: Text('Esperando por la ubicación...'));
-        }
-        return Center(
-            child: Text(
-                'Lat: ${state.lastKnowLocation!.latitude}, Lng: ${state.lastKnowLocation!.longitude}'));
-      },
-    ));
+    return Scaffold(body:
+        BlocBuilder<LocationBloc, LocationState>(builder: (context, state) {
+      if (state.lastKnowLocation == null) {
+        return const Center(child: Text('Esperando por la ubicación...'));
+      }
+
+      final CameraPosition initialCameraPosition = CameraPosition(
+        target: state.lastKnowLocation!,
+        zoom: 15,
+      );
+      return GoogleMap(
+        initialCameraPosition: initialCameraPosition,
+      );
+    }));
   }
 }
