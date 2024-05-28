@@ -10,7 +10,6 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-
   late LocationBloc locationBloc;
 
   @override
@@ -30,12 +29,15 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('GPS Map Screen'),
-      ),
-    );
+    return Scaffold(body: BlocBuilder<LocationBloc, LocationState>(
+      builder: (context, state) {
+        if (state.lastKnowLocation == null) {
+          return const Center(child: Text('Esperando por la ubicación...'));
+        }
+        return Center(
+            child: Text(
+                'Lat: ${state.lastKnowLocation!.latitude}, Lng: ${state.lastKnowLocation!.longitude}'));
+      },
+    ));
   }
-
-  
 }
