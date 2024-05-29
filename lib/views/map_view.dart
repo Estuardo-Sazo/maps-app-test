@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maps_app1/blocs/blocs.dart';
+import 'package:maps_app1/theme/theme.dart';
+
 
 class MapView extends StatelessWidget {
   final LatLng initialLocation;
@@ -31,6 +35,7 @@ class MapView extends StatelessWidget {
         myLocationEnabled: true,
         zoomControlsEnabled: false,
         myLocationButtonEnabled: false,
+        style: jsonEncode(uberMapTheme),
 
         onMapCreated: (controller)=> mapBloc.add(OnMapInitilizedEvent(controller)),
 
