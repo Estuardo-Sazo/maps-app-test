@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maps_app1/blocs/blocs.dart';
+import 'package:maps_app1/ui/ui.dart';
 
 class BtnCurrentLocation extends StatelessWidget {
   const BtnCurrentLocation({super.key});
@@ -19,7 +20,12 @@ class BtnCurrentLocation extends StatelessWidget {
           icon: const Icon(Icons.my_location_outlined, color: Colors.black87),
           onPressed: () {
             final userLoction = locationBloc.state.lastKnowLocation;
-            if (userLoction == null) return;
+
+            if (userLoction == null) {
+              final snack = CustomSnackBar(message: 'No hay Ubicación actual');
+              ScaffoldMessenger.of(context).showSnackBar(snack);
+              return;
+            }
             mapBloc.moveCamera(userLoction);
           },
         ),
