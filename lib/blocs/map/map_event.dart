@@ -6,3 +6,8 @@ sealed class MapEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class OnMapInitilizedEvent extends MapEvent {
+  final GoogleMapController controller;
+  const OnMapInitilizedEvent(this.controller);
+}
