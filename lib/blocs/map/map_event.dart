@@ -11,3 +11,7 @@ class OnMapInitilizedEvent extends MapEvent {
   final GoogleMapController controller;
   const OnMapInitilizedEvent(this.controller);
 }
+
+class OnStopFollowingUserEvent extends MapEvent {}
+
+ class OnStartFollowingUserEvent extends MapEvent {}

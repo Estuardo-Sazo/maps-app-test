@@ -6,7 +6,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maps_app1/blocs/blocs.dart';
 import 'package:maps_app1/theme/theme.dart';
 
-
 class MapView extends StatelessWidget {
   final LatLng initialLocation;
 
@@ -17,7 +16,6 @@ class MapView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final mapBloc = BlocProvider.of<MapBloc>(context);
 
     final CameraPosition initialCameraPosition = CameraPosition(
@@ -29,19 +27,23 @@ class MapView extends StatelessWidget {
     return SizedBox(
       width: screenSize.width,
       height: screenSize.height,
-      child: GoogleMap(
-        initialCameraPosition: initialCameraPosition,
-        compassEnabled: true,
-        myLocationEnabled: true,
-        zoomControlsEnabled: false,
-        myLocationButtonEnabled: false,
-        style: jsonEncode(uberMapTheme),
+      child: Listener(
+        onPointerHover: (pointerMoveEvent) => mapBloc.add(OnStopFollowingUserEvent()),
+        child: GoogleMap(
+          initialCameraPosition: initialCameraPosition,
+          compassEnabled: true,
+          myLocationEnabled: true,
+          zoomControlsEnabled: false,
+          myLocationButtonEnabled: false,
+          style: jsonEncode(uberMapTheme),
 
-        onMapCreated: (controller)=> mapBloc.add(OnMapInitilizedEvent(controller)),
+          onMapCreated: (controller) =>
+              mapBloc.add(OnMapInitilizedEvent(controller)),
 
-        //TODO: Markers
-        // polygons: _polygons,
-        //Cuando se mueve el mapa
+          //TODO: Markers
+          // polygons: _polygons,
+          //Cuando se mueve el mapa
+        ),
       ),
     );
   }
