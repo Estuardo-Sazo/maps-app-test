@@ -26,11 +26,11 @@ class MapState extends Equatable {
 
   */
 
-  MapState(
+  const MapState(
       {this.isMapInitilized = false,
       this.isFollowingUser = true,
       Map<String, Polyline>? polylines})
-      : polylines = polylines ?? {};
+      : polylines = polylines ?? const {};
 
   MapState copyWith({
     bool? isMapInitilized,
