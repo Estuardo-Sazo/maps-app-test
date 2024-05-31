@@ -3,6 +3,7 @@ part of 'map_bloc.dart';
 class MapState extends Equatable {
   final bool isMapInitilized;
   final bool isFollowingUser;
+  final bool showMyRoute;
 
   //Polylines
   final Map<String, Polyline> polylines;
@@ -29,17 +30,20 @@ class MapState extends Equatable {
   const MapState(
       {this.isMapInitilized = false,
       this.isFollowingUser = true,
+      this.showMyRoute = true, 
       Map<String, Polyline>? polylines})
       : polylines = polylines ?? const {};
 
   MapState copyWith({
     bool? isMapInitilized,
     bool? isFollowingUser,
+    bool? showMyRoute,
     Map<String, Polyline>? polylines,
   }) =>
       MapState(
         isMapInitilized: isMapInitilized ?? this.isMapInitilized,
         isFollowingUser: isFollowingUser ?? this.isFollowingUser,
+        showMyRoute: showMyRoute ?? this.showMyRoute,
         polylines: polylines ?? this.polylines,
       );
 

@@ -22,6 +22,10 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
     on<UpdateUserPolylineEvent>(_updateUserPolylineEvent);
 
+    on<OnToggleShowRouteEvent>((event, emit) {
+      emit(state.copyWith(showMyRoute: !state.showMyRoute));
+    });
+
     locationBloc.stream.listen((locationState) {
       if (locationState.lastKnowLocation != null) {
         add(UpdateUserPolylineEvent(locationState.myLocationHistory));

@@ -39,7 +39,7 @@ class MapView extends StatelessWidget {
           zoomControlsEnabled: false,
           myLocationButtonEnabled: false,
           style: jsonEncode(uberMapTheme),
-          polylines: polylines,
+          //polylines: polylines,
           onMapCreated: (controller) =>
               mapBloc.add(OnMapInitilizedEvent(controller)),
 
