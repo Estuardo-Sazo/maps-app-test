@@ -10,7 +10,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
   GoogleMapController? _mapController;
 
-  MapBloc({required this.locationBloc}) : super(const MapState()) {
+  MapBloc({required this.locationBloc}) : super( MapState()) {
     on<OnMapInitilizedEvent>(_onInitMap);
 
     on<OnStartFollowingUserEvent>(_onStartFollowingUser);

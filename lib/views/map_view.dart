@@ -9,9 +9,12 @@ import 'package:maps_app1/theme/theme.dart';
 class MapView extends StatelessWidget {
   final LatLng initialLocation;
 
+  final Set<Polyline> polylines;
+
   const MapView({
     super.key,
     required this.initialLocation,
+    required this.polylines,
   });
 
   @override
@@ -36,7 +39,7 @@ class MapView extends StatelessWidget {
           zoomControlsEnabled: false,
           myLocationButtonEnabled: false,
           style: jsonEncode(uberMapTheme),
-
+          polylines: polylines,
           onMapCreated: (controller) =>
               mapBloc.add(OnMapInitilizedEvent(controller)),
 
